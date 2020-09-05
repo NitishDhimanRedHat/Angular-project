@@ -1,1 +1,32 @@
-<p>login works!</p>
+<section>
+    <form [formGroup]="loginForm" (ngSubmit)="login()" novalidate fxFlex fxLayout="column" fxLayoutAlign="center center" fxLayoutGap="15px">
+        <mat-form-field>
+            <mat-label>User Email</mat-label>
+            <input type="email" matInput formControlName="email" placeholder="User Name"
+                [ngClass]="{ 'is-invalid': submitted && formControls.email.errors }">
+            <mat-error *ngIf="formControls.email.errors" class="invalid-feedback error">
+                <div *ngIf="formControls.email.errors.required">Email is <strong>required</strong></div>
+                <div *ngIf="formControls.email.errors.email">Email is <strong>invalid</strong></div>
+            </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" placeholder="Password"
+                [ngClass]="{ 'is-invalid': submitted && formControls.password.errors }"
+                [type]="hide ? 'password': 'text' ">
+            <mat-icon matSuffix (click)="hide = !hide" style="cursor: pointer;">
+                {{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            <mat-error *ngIf="formControls.password.errors" class="invalid-feedback error">
+                <div *ngIf="formControls.password.errors.required">Password is <strong>required</strong></div>
+            </mat-error>
+        </mat-form-field>
+
+        <button [disabled]="!loginForm.valid || submitted" mat-raised-button color="accent" type="submit"
+            style="font-size: 16px;">
+            Log-in
+            <i class="fa fa-lock" aria-hidden="true"></i>
+        </button>
+
+    </form>
+</section>

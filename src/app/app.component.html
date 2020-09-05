@@ -1,11 +1,59 @@
-
 <mat-sidenav-container>
     <mat-sidenav #sidenav role="navigation">
-        <p>SideNav!</p>
+        <mat-nav-list>
+            <mat-list-item>
+                <a routerLink="signup" (click)="sidenav.close()">
+                    <mat-icon>face</mat-icon>
+                    <span class="mx-2">Signup</span>
+                </a>
+            </mat-list-item>
+            <mat-list-item>
+                <a routerLink="login" (click)="sidenav.close()">
+                    <mat-icon>input</mat-icon>
+                    <span class="mx-2">Login</span>
+                </a>
+            </mat-list-item>
+            <mat-list-item>
+                <a routerLink="traning" (click)="sidenav.close()">
+                    <mat-icon>fitness_center</mat-icon>
+                    <span class="mx-2">Traning</span>
+                </a>
+            </mat-list-item>
+            <mat-list-item>
+                <button mat-icon-button (click)="sidenav.close()">
+                    <mat-icon>eject</mat-icon>
+                    <span class="my-2">Logout</span>
+                </button>
+            </mat-list-item>
+        </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-
-        <router-outlet></router-outlet>
+        <mat-toolbar color="accent">
+            <div fxHide.gt-xs>
+                <button mat-icon-button (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div><a routerLink="/">LOGO</a></div>
+            <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+                <ul fxLayout fxLayoutGap="10px" class="navigation-items">
+                    <li>
+                        <a routerLink="signup">Signup</a>
+                    </li>
+                    <li>
+                        <a routerLink="login">Login</a>
+                    </li>
+                    <li>
+                        <a routerLink="traning">Traning</a>
+                    </li>
+                    <li>
+                        <a>Logout</a>
+                    </li>
+                </ul>
+            </div>
+        </mat-toolbar>
+        <main>
+            <router-outlet></router-outlet>
+        </main>
     </mat-sidenav-content>
 </mat-sidenav-container>
-
